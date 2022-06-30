@@ -1,0 +1,23 @@
+<h3>{{weather.location.city}}, {{weather.location.state}} <span *ngIf="weather.location.zip != 0">{{weather.location.zip}}</span></h3>
+
+<div class="row">
+  <div class="col-sm-4">
+    <ul>
+        
+        
+        <li>Last Updated:{{weather.last_updated}}</li>
+        <li>Current Conditions: <img [src]="weather.condition.icon"> {{weather.condition.text}}</li>
+        <li>Temperature: {{weather.temp_f}}&#8451;F/{{weather.temp_c}}&#8451;C</li>
+        <li>Feels Like:  {{weather.feelslike_f}}&#8451;F / {{weather.feelslike_f}}&#8451;C</li>
+        <li>Wind Speed:  {{weather.wind_mph}} mph/ {{weather.wind_kph}}kph</li>
+        <li>Wind Direction: {{weather.wind_dir}}</li>
+        <li>Gusts: {{weather.gust_mph}}mph / {{weather.gust_kph}}kph</li>
+        <li>Atmospheric Pressure: {{weather.pressure_in}}in / {{weather.pressure_mb}}mb</li>
+        <li>Precipitation {{weather.precip_in}}in / {{weather.precip_mm}}mm</li>
+        <li>Humidity: {{weather.humidity}}</li>
+        <li>Cloud Cover: {{weather.cloud}}%</li>
+        <li>Visability: {{weather.vis_miles}} miles / {{weather.vis_km}} km</li>
+    </ul>
+
+
+    <button type="button" class="btn btn-primary" (click)="redirect()">Return to Search</button>

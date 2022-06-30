@@ -1,0 +1,39 @@
+<h3>{{weather.location.city}}, {{weather.location.state}} <span *ngIf="weather.location.zip != 0">{{weather.location.zip}}</span></h3>
+
+
+<div class="row">
+  <div class="col-sm-4">
+    <ul>
+        
+        
+        <li>Last Updated:<span *ngIf="displaySettings.last_updated.display">{{weather.last_updated}}</span></li>
+        <li>Current Conditions: <span *ngIf="displaySettings.condition.display"><img [src]="weather.condition.icon"> {{weather.condition.text}}</span></li>
+        <li>Temperature: <span *ngIf="displaySettings.temperature.display">{{weather.temp_f}}&#8451;F/{{weather.temp_c}}&#8451;C</span></li>
+        <li>Feels Like: <span *ngIf="displaySettings.feels.display">{{weather.feelslike_f}}&#8451;F / {{weather.feelslike_f}}&#8451;C</span></li>
+        <li>Wind Speed:  <span *ngIf="displaySettings.wind_speed.display">{{weather.wind_mph}} mph/ {{weather.wind_kph}}kph</span></li>
+        <li>Wind Direction: <span *ngIf="displaySettings.wind_dir.display">{{weather.wind_dir}}</span></li>
+        <li>Gusts: <span *ngIf="displaySettings.gusts.display">{{weather.gust_mph}}mph / {{weather.gust_kph}}kph</span></li>
+        <li>Atmospheric Pressure: <span *ngIf="displaySettings.pressure.display">{{weather.pressure_in}}in / {{weather.pressure_mb}}mb</span></li>
+        <li>Precipitation <span *ngIf="displaySettings.precip.display">{{weather.precip_in}}in / {{weather.precip_mm}}mm</span></li>
+        <li>Humidity: <span *ngIf="displaySettings.humidity.display">{{weather.humidity}}</span></li>
+        <li>Cloud Cover: <span *ngIf="displaySettings.clouds.display">{{weather.cloud}}%</span></li>
+        <li>Visability: <span *ngIf="displaySettings.vis.display">{{weather.vis_miles}} miles / {{weather.vis_km}} km</span></li>
+    </ul>
+
+
+    <button type="button" class="btn btn-primary" (click)="redirect()">See Details</button>
+  </div>
+  <div class="col-sm-4" >
+    <button type="button" class="btn btn-light" (click)="display = !display">Display settings</button>
+    <button type="button" class="btn btn-danger" (click)="delete()" >Delete search</button>
+
+    <ul *ngIf="display">
+
+      <!-- TODO: Figure out why returnZero is not setting it to use the original order -->
+        <div class="form-check form-switch" *ngFor="let display of displaySettings | keyvalue : returnZero">
+          <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" [(ngModel)]="display.value.display">
+          <label class="form-check-label" for="flexSwitchCheckDefault">{{display.value.label}}</label>
+        </div>
+    </ul>
+  </div>
+</div>

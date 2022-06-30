@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <input type="text" [(ngModel)]="searchText">
+            <button (click)="search()">Search</button>
+            <button (click)="reverse()" *ngIf="weatherData.length > 1">Reverse order</button>
+            <div class="alert alert-warning" role="alert" *ngIf="warning !=''">{{warning}}</div>
+        </div>
+    </div>
+
+    <div class="row justify-content-center" *ngFor="let weather of weatherData; index as i">
+        <app-weather-list-item 
+            [weather]="weather"
+            (deleteEvent)="delete(i)"
+            (redirectEvent)="redirect(i)">
+        </app-weather-list-item>
+    </div>
+</div>
